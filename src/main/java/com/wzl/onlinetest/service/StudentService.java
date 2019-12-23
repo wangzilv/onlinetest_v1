@@ -9,4 +9,5 @@ public interface StudentService {
     boolean saveStu(Student student);
     List<Student> findAll();
     boolean deleteStu(Student student);
+    Student login(Student student);
 }

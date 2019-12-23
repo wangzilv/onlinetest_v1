@@ -33,4 +33,8 @@ public class StudentServiceImpl implements StudentService {
     public boolean deleteStu(Student student) {
         return studentDao.deleteStu(student);
     }
+
+    @Override
+    public Student login(Student student) { return studentDao.login(student); }
+
 }

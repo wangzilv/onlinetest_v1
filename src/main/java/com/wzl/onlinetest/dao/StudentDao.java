@@ -9,4 +9,5 @@ public interface StudentDao {
     boolean saveStu(Student student);
     List<Student> findAll();
     boolean deleteStu(Student student);
+    Student login(Student student);
 }

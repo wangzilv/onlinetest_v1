@@ -90,7 +90,7 @@
             <img id="logo" src="/static/img/logo.jpg" style="width:72px;"><span class="tips" style="color:red;">忍住不哭来段口技</span>
         </div>
         <div class="bxs-row">
-            <input type="text" class="username" placeholder="用户名" value="admin">
+            <input type="text" class="username" placeholder="用户名">
             <p class=" err err-username"></p>
         </div>
         <div class="bxs-row">
@@ -117,17 +117,27 @@
             '/static/img/ver-3.png'
         ],
         success:function () {
-            //alert('执行登录函数');
-            $(".login").css({
-                "left":"0",
-                "opacity":"1"
-            });
-            $(".verBox").css({
-                "left":"404px",
-                "opacity":"0"
-            });
-            $(".tips").html('你是不是不知道账号密码！？？？');
-            $("#logo").attr("src",'/static/img/login-err.png')
+            var data = {
+                uid:$(".username").val(),
+                password:$(".password").val()
+            }
+
+            $.ajax({
+                url:"submit",
+                type:"post",
+                data:data,
+                dataType:"json",
+
+                success:function (data) {
+                    if('success' == data.result){
+                        window.location.href = "/Test"
+                    }
+                    else{
+                        $(".tips").html(data.msg);
+                        window.location.href = "login"
+                    }
+                }
+            })
         },
         error:function () {
             //alert('错误什么都不执行')

@@ -1,8 +1,6 @@
 package com.wzl.onlinetest.dao;
 
 import com.wzl.onlinetest.domain.Student;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -13,7 +11,6 @@ import java.util.List;
 @Repository
 public class StudentDaoImpl implements StudentDao {
 
-    private final static Logger logger = LoggerFactory.getLogger(StudentDaoImpl.class);
     //springboot会默认自动将数据源中的配置注入,用法与hibernate中sessionFactory生成的session类似。以后使用多数据源时会详细解释
     @PersistenceContext
     EntityManager entityManager;
@@ -73,4 +70,16 @@ public class StudentDaoImpl implements StudentDao {
         return flag;
     }
 
+    @Override
+    public Student login(Student student) {
+        List<Student> resultList = entityManager.createQuery("FROM Student where stuid = ?1 and password = ?2")
+                .setParameter(1,student.getStuid())
+                .setParameter(2,student.getPassword())
+                .setFirstResult(0)
+                .getResultList();
+        if (resultList.size() == 0) {
+            return null;
+        }
+        return resultList.get(0);
+    }
 }
