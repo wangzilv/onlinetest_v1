@@ -14,27 +14,24 @@ import java.util.List;
 public class StudentServiceImpl implements StudentService {
     @Autowired(required = true)
     StudentDao studentDao;
+
+
     @Override
-    public Student getStudent(){
-        return studentDao.getStudent();
+    public boolean save(Student student) {
+        boolean flag = false;
+        if(null != studentDao.save(student)){
+            flag = true;
+        }
+        return flag;
     }
 
     @Override
-    public boolean saveStu(Student student){
-        return studentDao.saveStu(student);
+    public Student findStudentByUid(String uid) {
+        return studentDao.findStudentByUid(uid);
     }
 
     @Override
-    public List<Student> findAll(){
-        return studentDao.findAll();
+    public Student findStudentByStuid(String stuId) {
+        return studentDao.findStudentByStuid(stuId);
     }
-
-    @Override
-    public boolean deleteStu(Student student) {
-        return studentDao.deleteStu(student);
-    }
-
-    @Override
-    public Student login(Student student) { return studentDao.login(student); }
-
 }

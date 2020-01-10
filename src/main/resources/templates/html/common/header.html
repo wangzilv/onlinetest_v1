@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:http="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<div th:fragment="myheader">
+        <head>
+            <script type="text/javascript" src="/static/app/html/common/axios-http.js"></script>
+            <style type="text/css">
+                .right-item{
+                    float: right;
+                }
+                .left-item{
+                    float: left;
+                }
+            </style>
+        </head>
+        <body>
+        <nav class="navbar navbar-default" role="navigation" style="background-color: white">
+            <div class="container-fluid" style="width: 1200px">
+                <!-- 导航头部 -->
+                <div class="navbar-header">
+                    <img src="/static/img/logo2.jpg">
+                </div>
+                <!-- 导航项目 -->
+                <div class="collapse navbar-collapse navbar-collapse-example">
+                    <!-- 一般导航项目 -->
+                    <ul class="nav navbar-nav">
+                        <li><a href="/Test">首页</a></li>
+                        <li><a href="">学习</a></li>
+                        <!-- 导航中的下拉菜单 -->
+                        <li class="dropdown dropdown-hover">
+                            <a href="" class="dropdown-toggle" data-toggle="dropdown">题库 <b class="caret"></b></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="">模拟考试</a></li>
+                                <li><a href="">期末真题</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <!-- 右侧的导航项目 -->
+                    <ul class="nav navbar-nav navbar-right" id="loginBanner">
+                        <li><a href="">帮助</a></li>
+                        <li class="dropdown dropdown-hover" v-if=" userinfo.usertype == '1' ">
+                            <a href="" class="dropdown-toggle user" data-toggle="dropdown" :data-code="userinfo.uid">{{userinfo.username}} <b class="caret"></b></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="">个人中心</a></li>
+                                <li><a href="">管理学生</a></li>
+                                <li class="divider"></li>
+                                <li><a href="/User/logout">退出</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown dropdown-hover" v-else-if=" userinfo.usertype == '2' ">
+                            <a href="" class="dropdown-toggle user" data-toggle="dropdown" :data-code="userinfo.uid">{{userinfo.username}} <b class="caret"></b></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="/User/profile">个人中心</a></li>
+                                <li><a href="">历史提交</a></li>
+                                <li class="divider"></li>
+                                <li><a href="/User/logout">退出</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown" v-else>
+                            <a href="/User/login">请登录</a>
+                        </li>
+                    </ul>
+                </div><!-- END .navbar-collapse -->
+            </div>
+        </nav>
+
+        <his-header v-bind:indexs="1"></his-header>
+        <script type='text/javascript' src='/static/js/jquery-3.3.1.js'></script>
+        <script type='text/javascript' src='/static/app/html/user/header.js'></script>
+        </body>
+</div>
+</html>

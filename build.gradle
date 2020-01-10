@@ -38,6 +38,7 @@ dependencies {
 
     compile 'com.google.guava:guava:19.0'
     compile 'org.springframework.boot:spring-boot-starter-thymeleaf'
+    compile group: 'org.sitemesh', name: 'sitemesh', version: '3.0.0'
     testImplementation('org.springframework.boot:spring-boot-starter-test') {
         exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
     }

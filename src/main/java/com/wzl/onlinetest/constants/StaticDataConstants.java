@@ -8,7 +8,7 @@ public class StaticDataConstants {
     public final static class resultMsg{
         private resultMsg(){}
         public final static String CODE = "code";
-        public final static String DATA = "data";
+        public final static String MSG = "msg";
         public final static String FAIL = "0";
         public final static String SUCCESS = "1";
     }

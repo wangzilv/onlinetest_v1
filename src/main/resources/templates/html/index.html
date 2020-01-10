@@ -1,10 +1,29 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:http="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>试题管理系统</title>
 </head>
 <body>
-<div th:replace="header :: myheader"  ></div>
+<div id="chapImg"></div><!-- 定义模板：标准语法（简洁语法） -->
+<script type="text/html" id="list_temp">
+    {{if chapter.length>0}}
+    {{each chapter}}
+    <div class="chapter-block">
+        <h1>{{$value.ctitle}}</h1>
+    </div>
+    <div class="chapter-img" style="padding: 30px 0">
+        <a class="card chapter-img" href="###">
+            <img src="/static/img/chapter.jpg" alt="">
+            <div class="card-heading"><strong>{{$value.cname}}</strong></div>
+            <div class="card-content text-muted">良辰美景奈何天，赏心乐事谁家院。</div>
+            <div class="card-actions">
+                <span class="label label-warning">牡丹亭</span>
+            </div>
+        </a>
+    </div>
+    {{/each}}
+    {{/if}}
+</script>
+<script type="text/javascript" src="/static/app/html/test/index.js"></script>
 </body>
 </html>

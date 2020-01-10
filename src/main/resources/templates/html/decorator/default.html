@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:http="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <meta charset="UTF-8">
+    <title>试题管理系统</title>
+    <link rel="stylesheet" href="/static/css/main.css" media="all">
+    <link rel="stylesheet" href="/static/js/zui-1.9.1-dist/dist/css/zui.css" media="all">
+    <script type='text/javascript' src='/static/js/jquery-3.3.1.js'></script>
+    <script type='text/javascript' src="/static/js/zui-1.9.1-dist/dist/js/zui.js"></script>
+    <script type='text/javascript' src="/static/js/vue.js"></script>
+    <script type="text/javascript" src="/static/js/axios.js"></script>
+    <script type="text/javascript" src="/static/app/html/common/axios-http.js"></script>
+    <script type="text/javascript" src="/static/js/template-web.js"></script>
+</head>
+<body>
+<!--头部导航栏start-->
+<header class="test-header" th:insert="common/header :: myheader" id="menu"></header>
+<!--头部导航栏end-->
+<!--页面内容start-->
+<div class="test-content">
+<sitemesh:write property='body'/>
+</div>
+<!--页面内容end-->
+<!--底部导航栏start-->
+<footer class="test-footer" th:insert="common/footer :: myfooter"></footer>
+<!--底部导航栏end-->
+</body>
+</html>

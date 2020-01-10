@@ -2,6 +2,8 @@ package com.wzl.onlinetest.domain;
 
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "student")
@@ -11,9 +13,13 @@ public class Student {
     @Column(name = "id")
     private Integer id;
     @Column(name = "stuid")
+    @NotNull(message = "请填写学号")
+    @NotEmpty(message = "请填写学号")
     private String stuid;
-    @Column(name = "password")
-    private String password;
+    @Column(name = "uid")
+    @NotNull(message = "请填写用户名")
+    @NotEmpty(message = "请填写用户名")
+    private String uid;
     @Column(name = "sname")
     private String sname;
     @Column(name = "sclass")
@@ -22,11 +28,13 @@ public class Student {
     private String gender;
     @Column(name = "status")
     private String status;
+    @Column(name = "createtime")
+    private String createtime;
+    @Column(name = "updatetime")
+    private String updatetime;
 
 
-    public Integer getId() {
-        return id;
-    }
+    public Integer getId() { return id; }
 
     public void setId(Integer id) {
         this.id = id;
@@ -38,14 +46,6 @@ public class Student {
 
     public void setStuid(String stuid) {
         this.stuid = stuid;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public String getSname() {
@@ -80,15 +80,36 @@ public class Student {
         this.status = status;
     }
 
-    public Student() {
+    public String getUid() { return uid; }
+
+    public void setUid(String uid) { this.uid = uid; }
+
+    public String getCreatetime() {
+        return createtime;
     }
 
-    public Student(String stuid, String password, String sname, String sclass, String gender, String status) {
+    public void setCreatetime(String createtime) {
+        this.createtime = createtime;
+    }
+
+    public String getUpdatetime() {
+        return updatetime;
+    }
+
+    public void setUpdatetime(String updatetime) {
+        this.updatetime = updatetime;
+    }
+
+    public Student() {}
+
+    public Student(String stuid, String uid, String sname, String sclass, String gender, String status, String createtime, String updatetime) {
         this.stuid = stuid;
-        this.password = password;
+        this.uid = uid;
         this.sname = sname;
         this.sclass = sclass;
         this.gender = gender;
         this.status = status;
+        this.createtime = createtime;
+        this.updatetime = updatetime;
     }
 }

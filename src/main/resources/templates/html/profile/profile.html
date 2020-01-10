@@ -1,0 +1,87 @@
+
+<!DOCTYPE html>
+<html lang="en"xmlns:th="http://www.thymeleaf.org" xmlns:http="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <meta charset="UTF-8">
+    <title>个人中心</title>
+</head>
+<body>
+<!--页面内容start-->
+<div class="">
+    <div class="row" style="background-color: white;height: 100%;margin: 0">
+            <div class="list-group inline-block fl-left" style="width: 200px">
+                <a href="/User/profile" class="list-group-item active">个人资料</a>
+                <a href="/User/account" class="list-group-item">账号信息</a>
+            </div>
+            <div  class="panel panel-primary inline-block fl-left" style="width: 965px; margin-left: 10px">
+                <div class="panel-heading">
+                    个人资料
+                </div>
+                <div class="panel-body" id="profile-form">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--页面内容end-->
+<script type='text/javascript' src='/static/js/jquery-3.3.1.js'></script>
+<script type='text/javascript' src='/static/app/html/user/profile.js'></script>
+<!-- 定义模板：标准语法（简洁语法） -->
+<script type="text/html" id="profile">
+    <div class="tab-pane fade active in" id="tab3Content1">
+        <form class="form-horizontal">
+            <div class="form-group">
+                <label class="col-sm-2">学号</label>
+                <div class="col-sm-10">
+                    <p class="form-control-static" id="stuid">{{stuinfo.stuid}}</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2">姓名</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="sname" placeholder="请输入姓名" value="{{stuinfo.sname}}">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2">班级</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="sclass" placeholder="请输入班级" value="{{stuinfo.sclass}}">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2">性别</label>
+                <div class="col-sm-10">
+                    <label class="radio-inline">
+                        <input class="gender" type="radio" name="radioOptionsExample" value="男"> 男
+                    </label>
+                    <label class="radio-inline">
+                        <input class="gender" type="radio" name="radioOptionsExample" value="女"> 女
+                    </label>
+                </div>
+            </div>
+        </form>
+    </div>
+</script>
+<script type="text/html" id="account" >
+    <div class="tab-content col-xs-9" >
+        <div class="tab-pane fade" id="tab3Content2">
+        <form class="form-horizontal">
+        <div class="form-group">
+        <label class="col-sm-2">用户名</label>
+        <div class="col-sm-10">
+        <p class="form-control-static">me@example.com</p>
+    </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2">密码</label>
+        <div class="col-sm-10">
+        <p class="form-control-static">*********</p>
+        <span style="color: rgb(84, 110, 122);cursor: pointer"><i class="icon icon-pencil"></i>重置</span>
+    </div>
+    </div>
+    </form>
+    </div>
+    </div>
+</script>
+</body>
+</html>

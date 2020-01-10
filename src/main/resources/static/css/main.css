@@ -1,0 +1,26 @@
+html,body{
+    height: 100%;
+}
+.test-content{
+    width: 100%;
+    height: 100%;
+    margin: 20px 0px;
+    display: inline-block;
+    padding: 0 360px
+}
+.layui-form-item{
+     width: 300px;
+     margin: 100px auto;
+ }
+.input{
+    margin-bottom: 30px;
+}
+.chapter-img{
+    width: 300px;
+}
+.inline-block{
+    display: inline-block;
+}
+.fl-left{
+    float: left;
+}
