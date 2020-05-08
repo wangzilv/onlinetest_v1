@@ -33,54 +33,41 @@
             <div class="form-group">
                 <label class="col-sm-2">学号</label>
                 <div class="col-sm-10">
-                    <p class="form-control-static" id="stuid">{{stuinfo.stuid}}</p>
+                    <p class="form-control-static" id="stuid">{{user.uid}}</p>
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-sm-2">姓名</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="sname" placeholder="请输入姓名" value="{{stuinfo.sname}}">
+                    <input type="text" class="form-control" id="sname" placeholder="请输入姓名" value="{{user.username}}">
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-sm-2">班级</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="sclass" placeholder="请输入班级" value="{{stuinfo.sclass}}">
+                    <input type="text" class="form-control" id="sclass" placeholder="请输入班级" value="{{user.userclass}}">
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-sm-2">性别</label>
                 <div class="col-sm-10">
                     <label class="radio-inline">
+                        {{if "男" == user.gender}}
+                        <input class="gender" type="radio" name="radioOptionsExample" value="男" checked> 男
+                        {{else}}
                         <input class="gender" type="radio" name="radioOptionsExample" value="男"> 男
+                        {{/if}}
                     </label>
                     <label class="radio-inline">
+                        {{if "女" == user.gender}}
+                        <input class="gender" type="radio" name="radioOptionsExample" value="女" checked> 女
+                        {{else}}
                         <input class="gender" type="radio" name="radioOptionsExample" value="女"> 女
+                        {{/if}}
                     </label>
                 </div>
             </div>
         </form>
-    </div>
-</script>
-<script type="text/html" id="account" >
-    <div class="tab-content col-xs-9" >
-        <div class="tab-pane fade" id="tab3Content2">
-        <form class="form-horizontal">
-        <div class="form-group">
-        <label class="col-sm-2">用户名</label>
-        <div class="col-sm-10">
-        <p class="form-control-static">me@example.com</p>
-    </div>
-    </div>
-    <div class="form-group">
-        <label class="col-sm-2">密码</label>
-        <div class="col-sm-10">
-        <p class="form-control-static">*********</p>
-        <span style="color: rgb(84, 110, 122);cursor: pointer"><i class="icon icon-pencil"></i>重置</span>
-    </div>
-    </div>
-    </form>
-    </div>
     </div>
 </script>
 </body>

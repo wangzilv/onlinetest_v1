@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+</head>
+
+<body>
+
+<div id="page">
+
+    <button id="newChapter" style="margin-bottom: 40px;" type="button" class="btn  btn-primary" data-toggle="modal" data-target="#newModel">新增章节</button>
+    <button style="margin-bottom: 40px;" type="button" class="btn   btn-danger" data-toggle="modal" data-target="#deleteAllModel">批量删除</button>
+    <table id="chapter" class="table table-striped">
+        <thead>
+        <tr>
+            <th>
+                <input id="CheckedAll" type="checkbox">
+            </th>
+            <th>#</th>
+            <th>章节名称</th>
+            <th>章节号</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody id="chapterTable">
+        </tbody>
+    </table>
+    <!--在这里放一个page的盒子，里面的内容由js添加-->
+    <div id="page1">
+    </div>
+
+</div>
+
+
+<div class="modal fade" id="newModel">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                <h4 class="modal-title">新增章节信息</h4>
+            </div>
+            <div class="modal-body">
+                章节号：
+                <input id="chapterTitle1" class="form-control" type="text" placeholder="请输入章节号">
+                章节名称：
+                <input id="chapterName1" class="form-control input-lg" style="font-size: 13px" type="text" placeholder="请输入章节名称">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button id="saveChapter" type="button" class="btn btn-primary">保存</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="modifyModel">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                <h4 class="modal-title">修改章节信息</h4>
+            </div>
+            <div class="modal-body">
+                章节号：
+                <input id="chapterTitle" class="form-control" type="text" placeholder="请输入章节号">
+                章节名称：
+                <input id="chapterName" class="form-control input-lg" style="font-size: 13px" type="text" placeholder="请输入章节名称">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button id="modifyChapter" type="button" class="btn btn-primary">修改</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="deleteModel">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                <h4 class="modal-title">删除章节</h4>
+            </div>
+            <div class="modal-body">
+                <p>是否删除当前章节?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">否</button>
+                <button id="deleteChapter" type="button" class="btn btn-primary">是</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="deleteAllModel">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                <h4 class="modal-title">删除章节</h4>
+            </div>
+            <div class="modal-body">
+                <p>是否删除这些章节?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">否</button>
+                <button id="deleteChapters" type="button" class="btn btn-primary">是</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="load-indicator loading mark" style="display: none;position:fixed;"></div>
+
+<script type='text/javascript' src="/static/js/jquery-3.3.1.js"></script>
+<script type='text/javascript' src="/static/js/zui-1.9.1-dist/dist/js/zui.js"></script>
+<script type="text/javascript" src="/static/js/zui-1.9.1-dist/dist/lib/datagrid/zui.datagrid.js"></script>
+<script type="text/javascript" src="/static/js/pagination/pagination.js"></script>
+<script type="text/javascript" src="/static/app/html/test/chapterManager.js"></script>
+<script type="text/html" id="chapter_list">
+    {{if chapter.length > 0}}
+    {{each chapter}}
+    <tr>
+        <td>
+            <input type="checkbox" data-code = "{{$value.cid}}">
+        </td>
+        <td>{{$value.cid}}</td>
+        <td>{{$value.cname}}</td>
+        <td>{{$value.ctitle}}</td>
+        <td>
+            <button type="button" class="btn  btn-primary modifyBtn" data-toggle="modal" data-target="#modifyModel">编辑</button>
+            <button type="button" class="btn  btn-primary deleteBtn" data-toggle="modal" data-target="#deleteModel">删除</button>
+        </td>
+    </tr>
+    {{/each}}
+    {{else}}
+    <div style="margin: 0 auto">查询不到结果</div>
+    {{/if}}
+</script>
+</body>
+</html>

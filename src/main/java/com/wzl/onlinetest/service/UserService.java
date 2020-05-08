@@ -1,6 +1,5 @@
 package com.wzl.onlinetest.service;
 
-import com.wzl.onlinetest.domain.QUserStu;
 import com.wzl.onlinetest.domain.User;
 
 

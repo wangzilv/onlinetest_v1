@@ -1,0 +1,11 @@
+#page{
+    margin-top: 60px;
+}
+#page .curr-page{
+    background-color:#009d8e;
+    color:white;
+}
+#page .page-btn:hover , #page .prev:hover, #page .next:hover{
+    background-color:#009d8e;
+    color:white;
+}

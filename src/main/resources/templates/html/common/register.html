@@ -92,13 +92,13 @@
             <img id="logo" src="/static/img/logo.jpg" style="width:72px;"><span class="tips" style="color:red;">请注册一下</span>
         </div>
         <div class="bxs-row">
-            <input type="text" class="input uid" placeholder="用户名">
+            <input type="text" class="input uid"  placeholder="用户名">
         </div>
         <div class="bxs-row">
-            <input type="password" class="input password" placeholder="密码">
+            <input type="password" class="input password"  placeholder="密码">
         </div>
         <div class="bxs-row">
-            <input type="text" class="input stuid" placeholder="学号">
+            <input type="text" class="input stuid"  placeholder="学号">
         </div>
         <div class="bxs-row">
             <input type="text" class="input username" placeholder="姓名">
@@ -108,7 +108,7 @@
         </div>
         <div class="layui-form-item bxs-row">
             <div class="layui-input-block" style="margin-left: 0px">
-                <input type="radio" class="gender" name="sex" value="男" title="男" checked="">
+                <input type="radio" class="gender" name="sex" value="男" title="男">
                 <input type="radio" class="gender" name="sex" value="女" title="女">
             </div>
         </div>
@@ -135,29 +135,18 @@
             var user = {
                 uid:$(".uid").val(),
                 password:$(".password").val(),
+                userclass:$(".class").val(),
+                gender:$(".layui-form-radioed").prev().val(),
                 username:$(".username").val(),
                 usertype:"2",
                 status:"1"
             }
-            var student = {
-                stuid:$(".stuid").val(),
-                uid:$(".uid").val(),
-                sclass:$(".class").val(),
-                gender:$(".gender").val(),
-                sname:$(".username").val(),
-                status:"1"
-            }
-            var data = {
-                user:user,
-                student:student
-            }
-
             $.ajax({
                 url:"registerSubmit",
                 type:"post",
                 dataType:"json",
                 contentType:"application/json",
-                data:JSON.stringify(data),
+                data:JSON.stringify(user),
 
                 success:function (res) {
                     if('1' == res.data.code){

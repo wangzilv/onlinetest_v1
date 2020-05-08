@@ -2,11 +2,11 @@ package com.wzl.onlinetest.domain;
 
 public class ActionResult {
 
-    private boolean success;
-
-    private String message;
+    private String result;
 
     private Object data;
+
+    private String message;
 
     private String code;
 
@@ -14,26 +14,26 @@ public class ActionResult {
     public ActionResult() {
     }
 
-    public ActionResult(boolean success) {
-        this(success, null, null);
+    public ActionResult(String result) {
+        this(result, null, null);
     }
 
-    public ActionResult(boolean success, String message) {
-        this(success, message, null);
+    public ActionResult(String result, Object data) {
+        this(result, data, null);
     }
 
-    public ActionResult(boolean success, String message, Object data) {
-        this.success = success;
+    public ActionResult(String result, Object data,String message ) {
+        this.result = result;
         this.message = message;
         this.data = data;
     }
 
-    public boolean isSuccess() {
-        return success;
+    public String getResult() {
+        return result;
     }
 
-    public void setSuccess(boolean success) {
-        this.success = success;
+    public void setResult(String result) {
+        this.result = result;
     }
 
     public String getMessage() {

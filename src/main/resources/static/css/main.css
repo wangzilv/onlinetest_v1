@@ -24,3 +24,16 @@ html,body{
 .fl-left{
     float: left;
 }
+
+.mark{
+    position:fixed;
+    left:0;
+    top:0;
+    opacity:.5;
+    width:100%;
+    height:100%;
+    background:#000;
+    z-index:1051;
+    pointer-events: none; //不能操作
+}
+

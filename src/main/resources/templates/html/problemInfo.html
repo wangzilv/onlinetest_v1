@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <div class="panel panel-primary" id="problemInfo">
+    </div>
+<script type='text/javascript' src='/static/js/jquery-3.3.1.js'></script>
+<script type="text/javascript" src="/static/app/html/test/problemInfo.js"></script>
+<script type="text/html" id="list_temp">
+    <div class="panel-heading">
+        {{if probleminfo.qtype == "1"}}
+        单选题
+        {{else if probleminfo.qtype == "2"}}
+        多选题
+        {{else if probleminfo.qtype == "3"}}
+        判断题
+        {{else if probleminfo.qtype == "4"}}
+        改错题
+        {{else if probleminfo.qtype == "5"}}
+        程序题
+        {{else}}
+        {{/if}}
+    </div>
+    <div class="panel-body">
+        题目：<pre>{{probleminfo.qask}}</pre>
+    </div>
+    <div class="panel-body">
+        题干：<pre>{{@probleminfo.qcon}}</pre>
+    </div>
+    <div class="panel-body">
+        <button data-toggle="button" class="btn" type="button" id="show_btn">查看答案</button>
+        <p id="answer" style="display: inline-block">{{probleminfo.qanswer}}</p>
+    </div>
+</script>
+</body>
+</html>

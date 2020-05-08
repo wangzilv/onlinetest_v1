@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+</head>
+
+<body>
+
+<div class="input-group">
+    <div class="input-group">
+        <p style="float: left">章节：</p>
+        <select class="form-control" id = "chapterList" style="width: 200px;">
+        </select>
+    </div>
+    <span class="input-group-addon fix-border fix-padding"></span>
+    <div class="input-group">
+        <p style="float: left">题型：</p>
+        <select class="form-control" id="problemType" style="width: 200px">
+            <option value="">所有</option>
+            <option value="1">单选题</option>
+            <option value="2">多选题</option>
+            <option value="3">判断题</option>
+            <option value="4">填空题</option>
+            <option value="5">编程题</option>
+            <option value="6">改错题</option>
+        </select>
+    </div>
+    <span class="input-group-addon fix-border fix-padding"></span>
+    <div class="input-group">
+        <p style="float: left">难度：</p>
+        <select class="form-control" id="difficulty" style="width: 200px">
+            <option value="">所有</option>
+            <option value="1">简单</option>
+            <option value="2">中等</option>
+            <option value="3">困难</option>
+        </select>
+    </div>
+    <span class="input-group-addon fix-border fix-padding"></span>
+    <input id = "problem" type="text" class="form-control" placeholder="题目名称">
+    <span class="input-group-addon fix-border fix-padding"></span>
+    <span class="input-group-btn">
+    <button id = "search" class="btn btn-default" type="button">查询</button>
+    </span>
+</div>
+<div id="page">
+    <table id="problemSet" class="table table-striped">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>题名</th>
+            <th>对应章节</th>
+            <th>题型</th>
+            <th>难易程度</th>
+            <th>分值</th>
+        </tr>
+        </thead>
+        <tbody id="problemTable">
+        </tbody>
+    </table>
+    <!--在这里放一个page的盒子，里面的内容由js添加-->
+    <div id="page1">
+    </div>
+
+</div>
+<script type='text/javascript' src="/static/js/jquery-3.3.1.js"></script>
+<script type='text/javascript' src="/static/js/zui-1.9.1-dist/dist/js/zui.js"></script>
+<script type="text/javascript" src="/static/js/zui-1.9.1-dist/dist/lib/datagrid/zui.datagrid.js"></script>
+<script type="text/javascript" src="/static/js/pagination/pagination.js"></script>
+<script type="text/javascript" src="/static/app/html/test/problemSet.js"></script>
+<script type="text/html" id="list_temp">
+    {{if problemSet.length > 0}}
+    {{each problemSet}}
+    <tr>
+        <td>{{$value.qid}}</td>
+        <td><a href="/ProblemSet/problemInfo?qid={{$value.qid}}">{{$value.qask}}</a></td>
+        <td>{{$value.cname}}</td>
+        <td>{{if $value.qtype == "1"}}
+            单选题
+            {{else if $value.qtype == "2"}}
+            多选题
+            {{else if $value.qtype == "3"}}
+            判断题
+            {{else if $value.qtype == "4"}}
+            改错题
+            {{else if $value.qtype == "5"}}
+            程序题
+            {{else}}
+            {{/if}}
+        </td>
+        <td>
+            {{if $value.qlevel == "1"}}
+            简单
+            {{else if $value.qlevel == "2"}}
+            中等
+            {{else if $value.qlevel == "3"}}
+            困难
+            {{else}}
+            {{/if}}
+        </td>
+        <td>{{$value.qscore}}</td>
+    </tr>
+    {{/each}}
+    {{else}}
+    <div style="margin: 0 auto">查询不到结果</div>
+    {{/if}}
+</script>
+<script type="text/html" id="chapter_list">
+    {{if chapter.length>0}}
+    <option value="">所有</option>
+    {{each chapter}}
+    <option value="{{$value.cid}}">{{$value.cname}}</option>
+    {{/each}}
+    {{/if}}
+</script>
+</body>
+</html>

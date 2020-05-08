@@ -74,17 +74,11 @@ public class UserController {
 
     @RequestMapping(value = "registerSubmit", produces="application/json;charset=utf-8")
     @ResponseBody
-    public Map<String, String> Register(@RequestBody @Valid  QUserStu qUserStu){
+    public Map<String, String> Register(@RequestBody @Valid  User user){
         Map<String,String> map = new HashMap<>();
-        User user = qUserStu.getUser();
-        Student stu = qUserStu.getStudent();
-        user.setCreatetime(TimeUtil.getTime("yyyy-MM-dd HH:mm:ss"));
-        user.setUpdatetime(TimeUtil.getTime("yyyy-MM-dd HH:mm:ss"));
-        stu.setCreatetime(TimeUtil.getTime("yyyy-MM-dd HH:mm:ss"));
-        stu.setUpdatetime(TimeUtil.getTime("yyyy-MM-dd HH:mm:ss"));
-        boolean flag1 = userService.save(user);
-        boolean flag2 = studentService.save(stu);
-        if(flag1&flag2){
+        user.setCreateTime(TimeUtil.getTime("yyyy-MM-dd HH:mm:ss"));
+        boolean flag = userService.save(user);
+        if(flag){
             map.put(StaticDataConstants.resultMsg.CODE,StaticDataConstants.resultMsg.SUCCESS);
         }else{
             map.put(StaticDataConstants.resultMsg.CODE,StaticDataConstants.resultMsg.FAIL);
@@ -121,7 +115,7 @@ public class UserController {
             if(null != localUSer) {
                 logger.info("----------------开始修改用户信息----------------");
                 localUSer.setUsername(user.getUsername());
-                localUSer.setUpdatetime(TimeUtil.getTime("yyyy-MM-dd HH:mm:ss"));
+                localUSer.setUpdateTime(TimeUtil.getTime("yyyy-MM-dd HH:mm:ss"));
                 flag = userService.save(localUSer);
                 logger.info("----------------修改用户信息成功----------------");
             }

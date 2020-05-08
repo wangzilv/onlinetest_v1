@@ -4,10 +4,13 @@ package com.wzl.onlinetest.domain;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "student")
-public class Student {
+public class Student implements Serializable {
+
+    private static final long serialVersionUID = -3420171618661766174L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")

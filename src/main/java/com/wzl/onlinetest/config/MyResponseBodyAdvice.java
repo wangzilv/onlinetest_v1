@@ -43,10 +43,10 @@ public class MyResponseBodyAdvice implements ResponseBodyAdvice<Object> {
             return body;
         } else {
             logger.debug("MyResponseBodyAdvice==>beforeBodyWrite:" + returnType + "," + body);
-            ActionResult result = new ActionResult(true);
+            ActionResult result = new ActionResult("success");
             result.setCode(StaticDataConstants.resultMsg.SUCCESS);
-            result.setMessage("请求成功");
             result.setData(body);
+            result.setMessage("请求成功");
             body = (Object) result;
             // body.setB("我是后面设置的");
             return body;
