@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
 </head>
-
+<title>试题管理</title>
 <body>
 
+<h1 style="text-align: center">试题管理</h1>
 <div class="input-group">
     <div class="input-group">
         <p style="float: left">章节：</p>
@@ -81,7 +82,7 @@
             <div class="modal-body">
                 <div class="input-group">
                 <p style="margin: 0">章节：</p>
-                <select class="form-control" id = "problemChapter" style="width: 200px;">
+                <select class="form-control" id = "problemChapter" style="width: 200px">
                 </select>
                 </div>
                 <span class="input-group-addon fix-border fix-padding"></span>
@@ -109,12 +110,10 @@
                 </div>
                 试题名称：
                 <input id="problemTitle" class="form-control" type="text" placeholder="请输入试题名称">
-                试题分值：
-                <input id="problemScore" class="form-control" type="text" placeholder="请输入试题分值">
                 试题内容：
                 <textarea id="content" name="content"></textarea>
                 试题答案：
-                <input id="problemAnswer" class="form-control" type="text" placeholder="请输入试题答案">
+                <textarea id="content3" name="content"></textarea>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default closeBtn" data-dismiss="modal">关闭</button>
@@ -166,7 +165,7 @@
                 试题内容：
                 <textarea id="content2" name="content"></textarea>
                 试题答案：
-                <input id="problemAnswer2" class="form-control" type="text" placeholder="请输入试题答案">
+                <textarea id="content4" name="content"></textarea>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default closeBtn" data-dismiss="modal">关闭</button>
@@ -180,7 +179,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
-                <h4 class="modal-title">删除试题</h4>
+                <h4 class="modal-title">删除单个试题</h4>
             </div>
             <div class="modal-body">
                 <p>是否删除当前试题?</p>
@@ -198,7 +197,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
-                <h4 class="modal-title">删除试题</h4>
+                <h4 class="modal-title">批量删除试题</h4>
             </div>
             <div class="modal-body">
                 <p>是否删除这些试题?</p>
@@ -220,12 +219,13 @@
     <script type="text/javascript" src="/static/app/html/test/problemSetManager.js"></script>
     <script type="text/javascript" src="/static/js/ueditor/ueditor.config.js"></script>
     <script type="text/javascript" src="/static/js/ueditor/ueditor.all.min.js"></script>
-    <script type="text/javascript" src="/static/js/ueditor/ueditor.all.js"></script>
     <script type="text/javascript" src="/static/js/ueditor/lang/zh-cn/zh-cn.js"></script>
 
     <script type="text/javascript">
     var ue = UE.getEditor('content');
     var ue2 = UE.getEditor('content2');
+    var ue3 = UE.getEditor('content3');
+    var ue4 = UE.getEditor('content4');
     </script>
     <script type="text/html" id="list_temp">
         {{if problemSet.length > 0}}
@@ -235,7 +235,7 @@
                         <input type="checkbox" data-code = "{{$value.qid}}">
                 </td>
                 <td>{{$value.qid}}</td>
-                <td><a href="/ProblemSet/problemInfo?qid={{$value.qid}}">{{$value.qask}}</a></td>
+                <td><a href="/ProblemSet/problemInfo?qid={{$value.qid}}" style="width:600px;display:block;overflow:hidden;word-break:keep-all;white-space:nowrap;text-overflow:ellipsis;" title="{{$value.qask}}">{{$value.qask}}</a></td>
                 <td>{{$value.cname}}</td>
                 <td>{{if $value.qtype == "1"}}
                     单选题
@@ -244,9 +244,11 @@
                     {{else if $value.qtype == "3"}}
                     判断题
                     {{else if $value.qtype == "4"}}
-                    改错题
+                    填空题
                     {{else if $value.qtype == "5"}}
-                    程序题
+                    编程题
+                    {{else if $value.qtype == "6"}}
+                    改错题
                     {{else}}
                     {{/if}}
                 </td>
@@ -263,7 +265,7 @@
                 <td>{{$value.qscore}}</td>
                 <td>
                     <button type="button" class="btn  btn-primary modifyBtn" data-toggle="modal" data-target="#modifyModel">编辑</button>
-                    <button type="button" class="btn  btn-primary deleteBtn" data-toggle="modal" data-target="#deleteModel">删除</button>
+                    <button type="button" class="btn  btn-danger deleteBtn" data-toggle="modal" data-target="#deleteModel">删除</button>
                 </td>
             </tr>
         {{/each}}
@@ -275,7 +277,7 @@
     {{if chapter.length>0}}
         <option value="">所有</option>
     {{each chapter}}
-        <option value="{{$value.cid}}">{{$value.cname}}</option>
+    <option value="{{$value.cid}}">{{$value.cname}}</option>
     {{/each}}
     {{/if}}
 </script>

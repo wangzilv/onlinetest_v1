@@ -80,4 +80,21 @@ public interface ProblemSetDao extends JpaRepository<ProblemSet,Integer>{
     @Query(value = "select MAX(CAST(tk_questionid AS SIGNED)) from tk_questions where tk_questionstatus = '1'",nativeQuery = true)
     String findMaxQid();
 
+
+    /**
+     * 获取随机某个题型的题目
+     * @param type
+     * @return
+     */
+    @Query(value = "SELECT * FROM tk_questions t where t.tk_type = ?1 and t.tk_questionstatus = '1' ORDER BY RAND() LIMIT 1;",nativeQuery = true)
+    ProblemSet findrandoffset(String type);
+
+    /**
+     * 获取某个类型下所有题目的个数
+     * @param type
+     * @param status
+     * @return
+     */
+    int countAllByQtypeAndStatus(String type,String status);
+
 }

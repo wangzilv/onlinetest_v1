@@ -18,15 +18,4 @@ public interface UserDao extends JpaRepository<User,Integer> {
      * @return
      */
     User save(User user);
-
-    /**
-     * 修改用户信息
-     * @param user
-     * @return
-     */
-
-//    @Query("")
-//    User updateUser();
-//    boolean register(User user);
-//    QUserStu checkInput(QUserStu qUserStu);
 }

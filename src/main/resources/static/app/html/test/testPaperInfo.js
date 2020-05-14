@@ -1,6 +1,7 @@
 window.onload = function () {
-    var qid = _getParameter("qid");
-    _getProblemInfo(qid);
+    var testid = _getParameter("testid");
+    var type = _getParameter("type");
+    _getProblemInfo(testid,type);
 }
 
 
@@ -25,32 +26,40 @@ function _getParameter(param)
     return query.substring(iStart, iEnd);
 }
 
-function _getProblemInfo(qid) {
-    axios.get('/ProblemSet/getProblemInfo',{
+function _getProblemInfo(testid,type) {
+    axios.get('/TestPaperManager/getTestPaperInfo',{
         params:{
-            qid:qid
+            testid:testid,
+            type:type
         }
     }).then(function (response) {
-        if(null != response && "" != response){
-            var html = template('list_temp', {probleminfo:  response})
-            $('#problemInfo').html(html);
-            _initBtn();
-        }
-        else{
+        if(null!=response&&""!=response){
+            console.log(response);
+            if("1" == response.code){
+                var html = template('list_temp', {testPaperInfo:  response})
+                $('#testPaperInfo').html(html);
+                _initBtn();
+            }else{
+                $('#testPaperInfo').html("获取数据失败:"+response);
+            }
+        }else{
             $('#testPaperInfo').html("未查询到数据");
         }
+
     })
 }
-function _initBtn(){
-    $('#answer').hide();
-    $('#show_btn').click(function () {
+
+function _initBtn() {
+    $(".answer").hide();
+    $(".show_btn").click(function () {
         if($(this).hasClass("active")){
             $(this).removeClass("active");
-            $('#answer').hide();
+            $(this).next('.answer').hide();
         }else{
             console.log($(this).class);
             $(this).addClass("active");
-            $('#answer').show();
+            $(this).next('.answer').show();
         }
     })
 }
+

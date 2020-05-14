@@ -4,10 +4,7 @@ import com.alibaba.excel.context.AnalysisContext;
 import com.alibaba.excel.event.AnalysisEventListener;
 import com.alibaba.excel.util.StringUtils;
 import com.wzl.onlinetest.constants.StaticDataConstants;
-import com.wzl.onlinetest.dao.BaseDao;
-import com.wzl.onlinetest.dao.BaseDaoFactoryBean;
-import com.wzl.onlinetest.dao.BaseDaoImpl;
-import com.wzl.onlinetest.domain.ExcelModel;
+import com.wzl.onlinetest.domain.ProblemExcelModel;
 import com.wzl.onlinetest.domain.ProblemSet;
 import com.wzl.onlinetest.service.ProblemSetService;
 import com.wzl.onlinetest.service.ProblemSetServiceImpl;
@@ -25,12 +22,12 @@ import java.util.List;
  * @author Jiaju Zhuang
  */
 // 有个很重要的点 DemoDataListener 不能被spring管理，要每次读取excel都要new,然后里面用到spring可以构造方法传进去
-public class UploadDataListener extends AnalysisEventListener<ExcelModel> {
+public class UploadProblemListener extends AnalysisEventListener<ProblemExcelModel> {
     private static final Logger LOGGER =
-            LoggerFactory.getLogger(UploadDataListener.class);
+            LoggerFactory.getLogger(UploadProblemListener.class);
 
     private static final int BATCH_COUNT = 5;
-    List<ExcelModel> list = new ArrayList<ExcelModel>();
+    List<ProblemExcelModel> list = new ArrayList<ProblemExcelModel>();
     private static int count = 1;
 
     /**
@@ -38,7 +35,7 @@ public class UploadDataListener extends AnalysisEventListener<ExcelModel> {
      */
     private ProblemSetService problemSetService;
 
-    public UploadDataListener() {
+    public UploadProblemListener() {
         // 这里是demo，所以随便new一个。实际使用如果到了spring,请使用下面的有参构造函数
         problemSetService = new ProblemSetServiceImpl();
     }
@@ -48,7 +45,7 @@ public class UploadDataListener extends AnalysisEventListener<ExcelModel> {
      *
      * @param problemSetService
      */
-    public UploadDataListener(ProblemSetService problemSetService) {
+    public UploadProblemListener(ProblemSetService problemSetService) {
         this.problemSetService = problemSetService;
     }
 
@@ -60,7 +57,7 @@ public class UploadDataListener extends AnalysisEventListener<ExcelModel> {
      * @param context
      */
     @Override
-    public void invoke(ExcelModel data, AnalysisContext context) {
+    public void invoke(ProblemExcelModel data, AnalysisContext context) {
         System.out.println("解析到一条数据:{ "+ data.toString() +" }");
         list.add(data);
         count ++;
@@ -89,7 +86,7 @@ public class UploadDataListener extends AnalysisEventListener<ExcelModel> {
     void saveData() {
         LOGGER.info("{}条数据，开始存储数据库！", list.size());
         long time1=System.currentTimeMillis();
-        for (ExcelModel excelModel:list) {
+        for (ProblemExcelModel excelModel:list) {
             String qid = problemSetService.findMaxQid();
             if(StringUtils.isEmpty(qid)){
                 qid = "0";

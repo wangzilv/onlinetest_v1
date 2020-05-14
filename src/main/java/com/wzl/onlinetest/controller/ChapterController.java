@@ -2,7 +2,6 @@ package com.wzl.onlinetest.controller;
 
 import com.alibaba.excel.util.StringUtils;
 import com.wzl.onlinetest.constants.StaticDataConstants;
-import com.wzl.onlinetest.dao.ProblemSetDao;
 import com.wzl.onlinetest.domain.Chapter;
 import com.wzl.onlinetest.domain.saveChapterInputParam;
 import com.wzl.onlinetest.service.ChapterService;
@@ -17,7 +16,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
-import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -26,7 +24,7 @@ import java.util.Map;
 @RequestMapping(value = "/ChapterManager")
 public class ChapterController {
 
-    private static final Logger logger = LoggerFactory.getLogger(UserController.class);
+    private static final Logger logger = LoggerFactory.getLogger(ChapterController.class);
 
     @Resource
     ChapterService chapterService;

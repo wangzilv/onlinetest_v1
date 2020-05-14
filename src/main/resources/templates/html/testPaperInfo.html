@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+<div class="panel-group" id="testPaperInfo">
+</div>
+<script type='text/javascript' src='/static/js/jquery-3.3.1.js'></script>
+<script type="text/javascript" src="/static/app/html/test/testPaperInfo.js"></script>
+<script type="text/html" id="list_temp">
+        <div class="panel-heading" style="background-color: #f5f5f5;font-size: 30px">
+            <p style="text-align:center" >试卷名称：{{testPaperInfo.testPaper.testtitle}}</p>
+        </div>
+        <div class="panel-body">
+            {{if testPaperInfo.testPaper.testdesc != "" && testPaperInfo.testPaper.testdesc != null}}
+            <pre style="font-size: 20px">{{testPaperInfo.testPaper.testdesc}}</pre>
+            {{else}}
+            {{if testPaperInfo.problemSetList.length > 0}}
+            {{each testPaperInfo.problemSetList}}
+
+            <!--单选题-->
+            {{if $value.qtype == "1"}}
+            <div>
+                <h3>{{$index+1}}.{{$value.qask}}</h3><h5>单选题 2分</h5>
+                <pre>{{@$value.qcont}}</pre>
+            </div>
+            <div>
+                <button data-toggle="button" class="btn show_btn btn-info" type="button">查看答案</button>
+                <div class="answer"><pre>{{@$value.qanswer}}</pre></div>
+            </div>
+
+            <!--多选题-->
+            {{else if $value.qtype == "2"}}
+            <div>
+                <h3>{{$index+1}}.{{$value.qask}}</h3><h5>多选题 4分</h5>
+                <pre>{{@$value.qcont}}</pre>
+            </div>
+            <div>
+                <button data-toggle="button" class="btn show_btn btn-info" type="button">查看答案</button>
+                <div class="answer"><pre>{{@$value.qanswer}}</pre></div>
+            </div>
+
+            <!--判断题-->
+            {{else if $value.qtype == "3"}}
+            <div>
+                <h3>{{$index+1}}.{{$value.qask}}</h3><h5>判断题 2分</h5>
+                <pre>{{@$value.qcont}}</pre>
+            </div>
+            <div>
+            <button data-toggle="button" class="btn show_btn btn-info" type="button">查看答案</button>
+            <div class="answer"><pre>{{@$value.qanswer}}</pre></div>
+            </div>
+
+
+            <!--填空题-->
+            {{else if $value.qtype == "4"}}
+            <div>
+                <h3>{{$index+1}}.{{$value.qask}}</h3><h5>填空题 5分</h5>
+                <pre>{{@$value.qcont}}</pre>
+            </div>
+            <div>
+                <button data-toggle="button" class="btn show_btn btn-info" type="button">查看答案</button>
+                <div class="answer"><pre>{{@$value.qanswer}}</pre></div>
+            </div>
+
+            <!--编程题-->
+            {{else if $value.qtype == "5"}}
+            <div>
+                <h3>{{$index+1}}.{{$value.qask}}</h3><h5>编程题 20分</h5>
+                <pre>{{@$value.qcont}}</pre>
+            </div>
+            <div>
+                <button data-toggle="button" class="btn show_btn btn-info" type="button">查看答案</button>
+                <div class="answer"><pre>{{@$value.qanswer}}</pre></div>
+            </div>
+
+            <!--改错题-->
+            {{else if $value.qtype == "6"}}
+            <div>
+                <h3>{{$index+1}}.{{$value.qask}}</h3><h5>改错题 5分</h5>
+                <pre>{{@$value.qcont}}</pre>
+
+            </div>
+            <div>
+                <button data-toggle="button" class="btn show_btn btn-info" type="button">查看答案</button>
+                <div class="answer"><pre>{{@$value.qanswer}}</pre></div>
+            </div>
+            {{else}}
+            {{/if}}
+            {{/each}}
+            {{/if}}
+            {{/if}}
+        </div>
+        <div class="panel-footer">
+            <p style="text-align:center">{{testPaperInfo.testPaper.testremark}}</p>
+        </div>
+</script>
+</body>
+</html>

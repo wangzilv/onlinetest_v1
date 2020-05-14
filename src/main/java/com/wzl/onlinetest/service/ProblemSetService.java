@@ -11,4 +11,6 @@ public interface ProblemSetService {
     ProblemSet findProblemSetByQidAndStatus(String id,String status);
     boolean save(ProblemSet problemSet);
     String findMaxQid();
+    ProblemSet findrandoffset(String type);
+    int countAllByQtypeAndStatus(String type,String status);
 }

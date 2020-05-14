@@ -47,7 +47,7 @@ public class ProblemSetController {
                                              @RequestParam(value = "problemType", defaultValue = "") String qtype) throws Exception{
 
         Pageable pageable = PageRequest.of(page,size,Sort.by(Sort.Direction.ASC,"id"));
-        Page<ProblemSetDao.ProblemChapter> problemSet = problemSetService.findAllByStatusAndCidAndQaskAndQtypeAndQlevelOrderByIdAsc(cid,qask,qlevel,qtype,pageable);
+        Page<ProblemSetDao.ProblemChapter> problemSet = problemSetService.findAllByStatusAndCidAndQaskAndQtypeAndQlevelOrderByIdAsc(cid,qask,qtype,qlevel,pageable);
         List<ProblemSetDao.ProblemChapter> data = problemSet.getContent();
         Map<String,String> pager = new HashMap<>();
         pager.put("page",String.valueOf(problemSet.getPageable().getOffset()));

@@ -89,6 +89,7 @@ function _initBtn() {
     var fk = $(":checkbox:first").click(function(){
         cks.prop("checked", $(this).prop("checked"));
     });
+    cks.unbind();
     cks.click(function(){
         if(!$(this).prop("checked")){
             fk.prop("checked",false);
@@ -99,10 +100,11 @@ function _initBtn() {
         }
     });
 
+    $(".deleteBtn").unbind();
     $(".deleteBtn").click(function () {
         $("#deleteModel").attr("data-id",$(this).parent().parent().children().eq(1).text());
     })
-
+    $("#newProblem").unbind();
     $("#newProblem").click(function () {
         $("#problemChapter").val("");
         $("#problemType1").val("");
@@ -113,15 +115,26 @@ function _initBtn() {
         ue.setContent("");
     })
 
+    $("#saveProblem").unbind();
     $("#saveProblem").click(function () {
+        var qtype = $("#problemType1").val();
+        var qscore;
+        switch (qtype) {
+            case "1":qscore = 2;break;
+            case "2":qscore = 4;break;
+            case "3":qscore = 2;break;
+            case "4":qscore = 2;break;
+            case "5":qscore = 20;break;
+            case "6":qscore = 5;break;
+        }
         var problemSet ={
             qask: $("#problemTitle").val(),
             qcon:ue.getContent(),
-            qanswer:$("#problemAnswer").val(),
+            qanswer:ue3.getContent(),
             cid:$("#problemChapter").val(),
-            qtype:$("#problemType1").val(),
+            qtype:qtype,
             qlevel:$("#problemDifficulty").val(),
-            qscore:$("#problemScore").val(),
+            qscore:qscore
         }
         var problemSetList = new Array();
         problemSetList.push(problemSet);
@@ -154,6 +167,7 @@ function _initBtn() {
         })
     });
 
+    $("#deleteProblem").unbind();
     $("#deleteProblem").click(function () {
         var problemSet = {
             qid:$("#deleteModel").attr("data-id")
@@ -188,6 +202,7 @@ function _initBtn() {
         })
     });
 
+    $(".modifyBtn").unbind();
     $(".modifyBtn").click(function(){
         var qid = $(this).parent().parent().children().eq(1).text();
         $("#modifyModel").attr("data-code",qid);
@@ -205,7 +220,6 @@ function _initBtn() {
 
             $("#problemTitle2").val(ask);
             $("#probmlemScore2").val(score);
-            $("#problemAnswer2").val(answer);
             $("#problemChapter2 option").each(function () {
                 if($(this).attr("value") == chapter){
                     $("#problemChapter2").val(chapter);
@@ -222,9 +236,10 @@ function _initBtn() {
                 }
             });
             ue2.setContent(content);
+            ue4.setContent(answer);
         })
     });
-
+    $("#modifyProblem").unbind();
     $("#modifyProblem").click(function () {
         var problemSetList = new Array();
         var qid = $("#modifyModel").attr("data-code");
@@ -234,7 +249,7 @@ function _initBtn() {
         var qask = $("#problemTitle2").val();
         var qscore = $("#probmlemScore2").val();
         var qcon = ue2.getContent();
-        var qanswer = $("#problemAnswer2").val();
+        var qanswer = ue4.getContent();
         var problemSet = {
             qid:qid,
             cid:cid,
@@ -274,6 +289,7 @@ function _initBtn() {
         })
 
     })
+    $("#deleteproblems").unbind();
     $("#deleteproblems").click(function () {
         var problemSetList = new Array();
         $("#problemTable input:checkbox:checked").each(function () {

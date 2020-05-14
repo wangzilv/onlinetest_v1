@@ -3,7 +3,7 @@ package com.wzl.onlinetest.domain;
 import com.alibaba.excel.annotation.ExcelProperty;
 import com.alibaba.excel.metadata.BaseRowModel;
 
-public class ExcelModel extends BaseRowModel {
+public class ProblemExcelModel extends BaseRowModel {
 
     @ExcelProperty(index = 0)
     private String column1;

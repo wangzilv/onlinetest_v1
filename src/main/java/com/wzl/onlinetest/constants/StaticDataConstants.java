@@ -28,4 +28,9 @@ public class StaticDataConstants {
         public final static String E = "0";
 
     }
+
+    public final static class testPaperType{
+        public final static String AutoTestPaper = "1";
+        public final static String BatchTestPaper = "2";
+    }
 }

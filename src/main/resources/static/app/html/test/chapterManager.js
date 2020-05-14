@@ -1,5 +1,5 @@
 window.onload = function () {
-   _getTotalPage()
+   _getTotalPage();
 }
 
 function _getTotalPage(){
@@ -33,6 +33,7 @@ function _initBtn() {
     var fk = $(":checkbox:first").click(function(){
         cks.prop("checked", $(this).prop("checked"));
     });
+    cks.unbind();
     cks.click(function(){
         if(!$(this).prop("checked")){
             fk.prop("checked",false);
@@ -42,16 +43,18 @@ function _initBtn() {
             }
         }
     });
-
+    $(".modifyBtn").unbind();
     $(".modifyBtn").click(function () {
         $("#modifyModel").attr("data-id",$(this).parent().parent().children().eq(1).text());
         $("#chapterTitle").val($(this).parent().parent().children().eq(3).text());
         $("#chapterName").val($(this).parent().parent().children().eq(2).text())
     })
+    $(".deleteBtn").unbind();
     $(".deleteBtn").click(function () {
         $("#deleteModel").attr("data-id",$(this).parent().parent().children().eq(1).text());
     })
 
+    $("#modifyChapter").unbind();
     $("#modifyChapter").click(function () {
         var chapter = {
             cid:$("#modifyModel").attr("data-id"),
@@ -88,6 +91,7 @@ function _initBtn() {
         })
     });
 
+    $("#saveChapter").unbind();
     $("#saveChapter").click(function () {
         var chapter ={
             ctitle: $("#chapterTitle1").val(),
@@ -122,6 +126,8 @@ function _initBtn() {
             }
         })
     });
+
+    $("#deleteChapter").unbind();
     $("#deleteChapter").click(function () {
         var chapter = {
             cid:$("#deleteModel").attr("data-id")
@@ -155,6 +161,8 @@ function _initBtn() {
             }
         })
     });
+
+    $("#deleteChapters").unbind();
     $("#deleteChapters").click(function () {
         var chapterList = new Array();
         $("#chapterTable input:checkbox:checked").each(function () {

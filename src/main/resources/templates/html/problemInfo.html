@@ -17,21 +17,23 @@
         {{else if probleminfo.qtype == "3"}}
         判断题
         {{else if probleminfo.qtype == "4"}}
-        改错题
+        填空题
         {{else if probleminfo.qtype == "5"}}
         程序题
+        {{else if probleminfo.qtype == "6"}}
+        改错题
         {{else}}
         {{/if}}
     </div>
     <div class="panel-body">
-        题目：<pre>{{probleminfo.qask}}</pre>
+        题目名称：<pre>{{probleminfo.qask}}</pre>
     </div>
     <div class="panel-body">
-        题干：<pre>{{@probleminfo.qcon}}</pre>
+        题目内容：<pre>{{@probleminfo.qcon}}</pre>
     </div>
     <div class="panel-body">
         <button data-toggle="button" class="btn" type="button" id="show_btn">查看答案</button>
-        <p id="answer" style="display: inline-block">{{probleminfo.qanswer}}</p>
+        <div id="answer"><pre>{{@probleminfo.qanswer}}</pre></div>
     </div>
 </script>
 </body>

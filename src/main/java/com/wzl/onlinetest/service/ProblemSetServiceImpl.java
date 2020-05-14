@@ -42,5 +42,15 @@ public class ProblemSetServiceImpl implements ProblemSetService {
         return problemSetDao.findMaxQid();
     }
 
+    @Override
+    public ProblemSet findrandoffset(String type) {
+        return problemSetDao.findrandoffset(type);
+    }
+
+    @Override
+    public int countAllByQtypeAndStatus(String type, String status) {
+        return problemSetDao.countAllByQtypeAndStatus(type,status);
+    }
+
 
 }

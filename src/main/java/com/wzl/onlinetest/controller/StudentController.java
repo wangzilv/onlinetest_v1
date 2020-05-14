@@ -16,7 +16,7 @@ import java.util.Map;
 @RequestMapping(value = "/Student")
 public class StudentController {
 
-    private static final Logger logger = LoggerFactory.getLogger(UserController.class);
+    private static final Logger logger = LoggerFactory.getLogger(StudentController.class);
 
     @Resource
     StudentService studentService;
